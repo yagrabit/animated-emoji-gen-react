@@ -5,8 +5,8 @@ import {
   type FilterProps,
 } from "./types";
 
-/** 回転アニメーションフィルター（scale維持 + rotate合成） */
-export function FilterRotate({
+/** ゆらゆら揺れるフィルター（rotate往復アニメーション） */
+export function FilterWobble({
   id,
   transforms,
   paths,
@@ -18,7 +18,6 @@ export function FilterRotate({
 
   const center = size / 2;
 
-  /** "scale(x, y)" → "x y" 形式に変換 */
   const scaleParams = useMemo(
     () => transforms.map(parseScaleTransform),
     [transforms],
@@ -41,7 +40,7 @@ export function FilterRotate({
             type="scale"
             from={scaleParams[i]}
             to={scaleParams[i]}
-            dur="1s"
+            dur="0.5s"
             additive="sum"
             repeatCount="indefinite"
           />
@@ -49,9 +48,8 @@ export function FilterRotate({
             attributeName="transform"
             attributeType="XML"
             type="rotate"
-            from={`360 ${center} ${center}`}
-            to={`0 ${center} ${center}`}
-            dur="1s"
+            values={`-10 ${center} ${center}; 10 ${center} ${center}; -10 ${center} ${center}`}
+            dur="0.5s"
             additive="sum"
             repeatCount="indefinite"
           />
