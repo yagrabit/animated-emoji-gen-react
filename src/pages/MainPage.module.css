@@ -1,0 +1,37 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.columns {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.left {
+  flex: 0 0 320px;
+  min-width: 0;
+}
+
+.right {
+  flex: 1;
+  min-width: 0;
+}
+
+/* モバイル: 1カラムに折り返し */
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+  }
+
+  .left {
+    flex: none;
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+  }
+}

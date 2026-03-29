@@ -1,0 +1,58 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  padding: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #363636;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 128px;
+  height: 128px;
+  background-color: #ededed;
+  border-radius: 4px;
+}
+
+.downloadButton {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #485fc7;
+  border-radius: 4px;
+  background-color: #485fc7;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.downloadButton:hover {
+  opacity: 0.85;
+}
+
+.downloadButton:disabled {
+  background-color: #b5b5b5;
+  border-color: #b5b5b5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
