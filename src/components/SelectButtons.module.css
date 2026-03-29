@@ -1,0 +1,33 @@
+.grid {
+  width: 100%;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  grid-auto-rows: minmax(25px, auto);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: background-color ease 0.1s;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: #cdcdcd;
+}
+
+.active {
+  background-color: #ededed;
+}
+
+.active:hover {
+  background-color: #ededed;
+}
