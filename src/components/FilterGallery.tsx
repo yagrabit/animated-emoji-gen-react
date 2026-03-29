@@ -5,7 +5,10 @@ import { FilterNormal } from "@/components/filters/FilterNormal";
 import { FilterDancingStroke } from "@/components/filters/FilterDancingStroke";
 import { FilterBlink } from "@/components/filters/FilterBlink";
 import { FilterScale } from "@/components/filters/FilterScale";
-import { FilterRotate } from "@/components/filters/FilterRotate";
+import { FilterShake } from "@/components/filters/FilterShake";
+import { FilterBounce } from "@/components/filters/FilterBounce";
+import { FilterRainbow } from "@/components/filters/FilterRainbow";
+import { FilterWobble } from "@/components/filters/FilterWobble";
 import styles from "./FilterGallery.module.css";
 
 const FILTERS: FilterEntry[] = [
@@ -13,7 +16,10 @@ const FILTERS: FilterEntry[] = [
   { name: "Dancing Stroke", component: FilterDancingStroke },
   { name: "Blink", component: FilterBlink },
   { name: "Scale", component: FilterScale },
-  { name: "Rotate", component: FilterRotate },
+  { name: "Shake", component: FilterShake },
+  { name: "Bounce", component: FilterBounce },
+  { name: "Rainbow", component: FilterRainbow },
+  { name: "Wobble", component: FilterWobble },
 ];
 
 type FilterGalleryProps = {
