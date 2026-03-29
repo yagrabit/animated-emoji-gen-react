@@ -11,6 +11,9 @@ importers:
       hex-rgb:
         specifier: ^5.0.0
         version: 5.0.0
+      modern-gif:
+        specifier: ^2.0.4
+        version: 2.0.4
       opentype.js:
         specifier: ^1.3.4
         version: 1.3.4
@@ -1030,6 +1033,12 @@ packages:
 
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
+
+  modern-gif@2.0.4:
+    resolution: {integrity: sha512-q3Nf6X3kpnGwiKLzTzOjsbvM16/kPcfy0JrrC79TmuKLCWiOkwb0ztuVhZnqGCizSr4o84gFOaBeGDVaE/Bcgw==}
+
+  modern-palette@2.0.0:
+    resolution: {integrity: sha512-wKZcom2QzK6sS6h5RLYHEkd3V3maQLzgkI+ekDCimlk7dfXa63aekZcy+7KS+8JEqIDeY/yV1CAvA7l+7u6QHA==}
 
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -2326,6 +2335,12 @@ snapshots:
   minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.13
+
+  modern-gif@2.0.4:
+    dependencies:
+      modern-palette: 2.0.0
+
+  modern-palette@2.0.0: {}
 
   ms@2.1.3: {}
 
