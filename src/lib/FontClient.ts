@@ -20,33 +20,39 @@ const loadFont = (url: string): Promise<Font | null> => {
   });
 };
 
-// ロケール・ファミリー・ウェイトからフォントパスを決定するマッピング
-const fontPathMap: Record<string, Record<FontFamily, Record<FontWeight, string>>> = {
+// Viteのベースパスを取得（末尾スラッシュ付き、例: "/animated-emoji-gen-react/"）
+const BASE_URL = import.meta.env.BASE_URL;
+
+// ロケール・ファミリー・ウェイトからフォントファイル名を決定するマッピング
+const fontFileMap: Record<string, Record<FontFamily, Record<FontWeight, string>>> = {
   ja: {
     serif: {
-      bold: "/fonts/NotoSerifJP-Black.otf",
-      medium: "/fonts/NotoSerifJP-Medium.otf",
-      light: "/fonts/NotoSerifJP-Light.otf",
+      bold: "NotoSerifJP-Black.otf",
+      medium: "NotoSerifJP-Medium.otf",
+      light: "NotoSerifJP-Light.otf",
     },
     sans: {
-      bold: "/fonts/NotoSansJP-Black.otf",
-      medium: "/fonts/NotoSansJP-Medium.otf",
-      light: "/fonts/NotoSansJP-Light.otf",
+      bold: "NotoSansJP-Black.otf",
+      medium: "NotoSansJP-Medium.otf",
+      light: "NotoSansJP-Light.otf",
     },
   },
   en: {
     serif: {
-      bold: "/fonts/NotoSerif-Bold.ttf",
-      medium: "/fonts/NotoSerif-Regular.ttf",
-      light: "/fonts/NotoSerif-Italic.ttf",
+      bold: "NotoSerif-Bold.ttf",
+      medium: "NotoSerif-Regular.ttf",
+      light: "NotoSerif-Italic.ttf",
     },
     sans: {
-      bold: "/fonts/NotoSans-Bold.ttf",
-      medium: "/fonts/NotoSans-Regular.ttf",
-      light: "/fonts/NotoSans-Italic.ttf",
+      bold: "NotoSans-Bold.ttf",
+      medium: "NotoSans-Regular.ttf",
+      light: "NotoSans-Italic.ttf",
     },
   },
 };
+
+// ベースパスとフォントファイル名からフルパスを生成
+const getFontPath = (fileName: string): string => `${BASE_URL}fonts/${fileName}`;
 
 export class FontClient {
   private locale: string;
@@ -56,15 +62,15 @@ export class FontClient {
   }
 
   async loadFont(family: FontFamily, weight: FontWeight): Promise<Font | null> {
-    const localePaths = fontPathMap[this.locale];
-    if (!localePaths) {
+    const localeFiles = fontFileMap[this.locale];
+    if (!localeFiles) {
       return null;
     }
-    const path = localePaths[family]?.[weight];
-    if (!path) {
+    const fileName = localeFiles[family]?.[weight];
+    if (!fileName) {
       return null;
     }
-    return loadFont(path);
+    return loadFont(getFontPath(fileName));
   }
 
   async loadAllFonts(): Promise<Fonts> {
