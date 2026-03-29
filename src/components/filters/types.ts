@@ -26,3 +26,31 @@ export type FilterEntry = {
   /** フィルターコンポーネント */
   component: FilterComponent;
 };
+
+/**
+ * pathsとtransformsの配列長が一致することを検証する。
+ * 不一致の場合はErrorをスローする。
+ */
+export function validateFilterProps(paths: string[], transforms: string[]) {
+  if (paths.length !== transforms.length) {
+    throw new Error(
+      `paths and transforms must have the same length (paths: ${paths.length}, transforms: ${transforms.length})`,
+    );
+  }
+}
+
+/** "scale(x, y)" 形式の文字列にマッチする正規表現 */
+const SCALE_PATTERN =
+  /^scale\(\s*([+-]?(?:\d+\.?\d*|\.\d+))\s*,\s*([+-]?(?:\d+\.?\d*|\.\d+))\s*\)$/;
+
+/**
+ * "scale(x, y)" → "x y" 形式に変換する。
+ * フォーマットが不正な場合はErrorをスローする。
+ */
+export function parseScaleTransform(transform: string): string {
+  const m = transform.match(SCALE_PATTERN);
+  if (!m) {
+    throw new Error(`Invalid transform format: ${transform}`);
+  }
+  return `${m[1]} ${m[2]}`;
+}

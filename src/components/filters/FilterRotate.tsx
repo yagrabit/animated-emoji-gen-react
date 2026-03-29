@@ -1,5 +1,9 @@
 import { useMemo } from "react";
-import type { FilterProps } from "./types";
+import {
+  parseScaleTransform,
+  validateFilterProps,
+  type FilterProps,
+} from "./types";
 
 /** 回転アニメーションフィルター（scale維持 + rotate合成） */
 export function FilterRotate({
@@ -10,9 +14,13 @@ export function FilterRotate({
   viewBoxSize: size = 128,
   backgroundColor = "transparent",
 }: FilterProps) {
+  validateFilterProps(paths, transforms);
+
+  const center = size / 2;
+
   /** "scale(x, y)" → "x y" 形式に変換 */
   const scaleParams = useMemo(
-    () => transforms.map((t) => t.replace(/scale\((.+),\s+(.+)\)/, "$1 $2")),
+    () => transforms.map(parseScaleTransform),
     [transforms],
   );
 
@@ -41,8 +49,8 @@ export function FilterRotate({
             attributeName="transform"
             attributeType="XML"
             type="rotate"
-            from="360 120 120"
-            to="0 120 120"
+            from={`360 ${center} ${center}`}
+            to={`0 ${center} ${center}`}
             dur="1s"
             additive="sum"
             repeatCount="indefinite"

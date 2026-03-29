@@ -1,5 +1,5 @@
 import { useId } from "react";
-import type { FilterProps } from "./types";
+import { validateFilterProps, type FilterProps } from "./types";
 
 /** 踊るストロークフィルター（feTurbulence + SMIL） */
 export function FilterDancingStroke({
@@ -10,6 +10,7 @@ export function FilterDancingStroke({
   viewBoxSize: size = 128,
   backgroundColor = "transparent",
 }: FilterProps) {
+  validateFilterProps(paths, transforms);
   const filterId = useId();
 
   return (

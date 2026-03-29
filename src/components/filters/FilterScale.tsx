@@ -1,5 +1,9 @@
 import { useMemo } from "react";
-import type { FilterProps } from "./types";
+import {
+  parseScaleTransform,
+  validateFilterProps,
+  type FilterProps,
+} from "./types";
 
 /** スケールアニメーションフィルター */
 export function FilterScale({
@@ -10,9 +14,11 @@ export function FilterScale({
   viewBoxSize: size = 128,
   backgroundColor = "transparent",
 }: FilterProps) {
+  validateFilterProps(paths, transforms);
+
   /** "scale(x, y)" → "x y" 形式に変換 */
   const scaleParams = useMemo(
-    () => transforms.map((t) => t.replace(/scale\((.+),\s+(.+)\)/, "$1 $2")),
+    () => transforms.map(parseScaleTransform),
     [transforms],
   );
 
